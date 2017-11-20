@@ -11,6 +11,4 @@ public class UserService {
     @Inject
     private UserRepository userRepository;
 
-
-
 }
