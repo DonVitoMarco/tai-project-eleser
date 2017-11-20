@@ -5,13 +5,11 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
 
-<ui:composition template="/template/commonLayout.xhtml">
-    <ui:define name="content">
-        <h:form>
-            <h:commandLink action="#{navigationBean.goToPage('app')}" value="APP"/>
-        </h:form>
-    </ui:define>
-</ui:composition>
+<ui:component>
+    <h1>common content</h1>
+</ui:component>
 
+</body>
 </html>
