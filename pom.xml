@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pl.thewalkingcode</groupId>
+    <artifactId>eleser</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>eleser-data</module>
+        <module>eleser-service</module>
+        <module>eleser-web</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <name>eleser</name>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-data-jpa.version>1.11.6.RELEASE</spring-data-jpa.version>
+        <apache-shiro.version>1.4.0</apache-shiro.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- APP -->
+            <dependency>
+                <groupId>pl.thewalkingcode</groupId>
+                <artifactId>eleser-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.thewalkingcode</groupId>
+                <artifactId>eleser-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.thewalkingcode</groupId>
+                <artifactId>eleser-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- DATA -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring-data-jpa.version}</version>
+            </dependency>
+            <!-- SECURITY -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-all</artifactId>
+                <version>${apache-shiro.version}</version>
+            </dependency>
+            <!-- TEST -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
