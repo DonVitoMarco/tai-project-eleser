@@ -65,6 +65,12 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.se</groupId>
+                <artifactId>weld-se</artifactId>
+                <version>2.3.3.Final</version>
+                <scope>test</scope>
+            </dependency>
             <!-- PROVIDED -->
             <dependency>
                 <groupId>javax</groupId>

@@ -18,10 +18,6 @@
             <artifactId>eleser-data</artifactId>
         </dependency>
         <dependency>
-            <groupId>pl.thewalkingcode</groupId>
-            <artifactId>eleser-service</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>
