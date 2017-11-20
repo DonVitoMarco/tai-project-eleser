@@ -21,7 +21,7 @@ public class User extends BaseEntity implements Serializable {
     @Column
     private String surname;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Role role;
 
     public User() {

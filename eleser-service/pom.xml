@@ -12,5 +12,23 @@
 
     <artifactId>eleser-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>pl.thewalkingcode</groupId>
+            <artifactId>eleser-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>pl.thewalkingcode</groupId>
+            <artifactId>eleser-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
