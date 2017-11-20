@@ -5,6 +5,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import pl.thewalkingcode.model.User;
 import pl.thewalkingcode.repository.UserRepository;
 
@@ -58,7 +59,9 @@ public class CustomShiroRealm extends AuthorizingRealm {
         if (user.getPassword() == null || user.getSalt() == null) {
             throw new AccountException("Null password are not allowed");
         }
-        return new SimpleAuthenticationInfo(username, user.getPassword().toCharArray(), this.getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, user.getPassword().toCharArray(), this.getName());
+        super.clearCache(simpleAuthenticationInfo.getPrincipals());
+        return simpleAuthenticationInfo;
     }
 
 }

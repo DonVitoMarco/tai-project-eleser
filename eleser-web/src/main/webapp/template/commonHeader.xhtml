@@ -11,7 +11,7 @@
 <ui:component>
     <h1>common header</h1>
     <h:panelGroup rendered="#{not empty request.remoteUser}">
-        <p:button value="Logout" href="/logout"/>
+        <p:button value="Logout" href="/logout?faces-redirect=true"/>
     </h:panelGroup>
 </ui:component>
 
