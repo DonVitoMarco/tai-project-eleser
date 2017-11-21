@@ -6,6 +6,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.mindrot.jbcrypt.BCrypt;
 import pl.thewalkingcode.model.User;
 import pl.thewalkingcode.repository.UserRepository;
 
@@ -14,6 +15,7 @@ import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.HashSet;
 import java.util.Set;
 
 public class CustomShiroRealm extends AuthorizingRealm {
@@ -33,18 +35,21 @@ public class CustomShiroRealm extends AuthorizingRealm {
         }
     }
 
-    //TODO roles for user
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         if (principalCollection == null) {
             throw new AuthenticationException("PrincipalCollection method argument cannot be null");
         }
         String username = (String) this.getAvailablePrincipal(principalCollection);
+        User user = userRepository.findByLogin(username);
         Set<String> roleNames = null;
+        if (user != null) {
+            roleNames = new HashSet<>();
+            roleNames.add(user.getRole().getName());
+        }
         return new SimpleAuthorizationInfo(roleNames);
     }
 
-    //TODO salt password
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;
@@ -56,7 +61,7 @@ public class CustomShiroRealm extends AuthorizingRealm {
         if (user == null) {
             throw new AccountException("User with this username [" + username + "] does not exists");
         }
-        if (user.getPassword() == null || user.getSalt() == null) {
+        if (user.getPassword() == null) {
             throw new AccountException("Null password are not allowed");
         }
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, user.getPassword().toCharArray(), this.getName());
