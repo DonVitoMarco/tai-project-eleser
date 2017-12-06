@@ -86,8 +86,14 @@ public class AdminBean implements Serializable {
     }
 
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Device Edited", ((Device) event.getObject()).getSerialNumber());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        Device updateDevice = (Device) event.getObject();
+        updateDevice.setUpdateDate(new Date());
+        boolean success = deviceService.update(updateDevice);
+
+        if (success) {
+            FacesMessage msg = new FacesMessage("Device Edited", ((Device) event.getObject()).getSerialNumber());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     public void onRowCancel(RowEditEvent event) {
@@ -112,6 +118,11 @@ public class AdminBean implements Serializable {
         newWarrantyDate = new Date();
         newName = "";
         newSerialNumber = "";
+    }
+
+    public void deleteDevice(Device deviceToRemove) {
+        deviceService.delete(deviceToRemove.getId());
+        deviceList = deviceService.findAll();
     }
 
 }

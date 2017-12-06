@@ -24,4 +24,12 @@ public class DeviceService {
         deviceRepository.create(device);
     }
 
+    public boolean update(Device device) {
+        return deviceRepository.merge(device) != null;
+    }
+
+    public void delete(Long id) {
+        deviceRepository.delete(id);
+    }
+
 }

@@ -27,12 +27,19 @@ public class DeviceRepository  {
         return list;
     }
 
-    public void merge(Device device) {
-        entityManager.merge(device);
+    public Device merge(Device device) {
+        return entityManager.merge(device);
     }
 
     public void create(Device device) {
         entityManager.persist(device);
+    }
+
+    public void delete(Long id) {
+        Device device = entityManager.find(Device.class, id);
+        if (device != null) {
+            entityManager.remove(device);
+        }
     }
 
 }
