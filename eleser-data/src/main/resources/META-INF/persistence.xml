@@ -5,6 +5,7 @@
 
         <class>pl.thewalkingcode.model.Role</class>
         <class>pl.thewalkingcode.model.User</class>
+        <class>pl.thewalkingcode.model.Device</class>
 
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

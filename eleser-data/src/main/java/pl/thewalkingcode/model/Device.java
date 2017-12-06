@@ -2,10 +2,10 @@ package pl.thewalkingcode.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 public class Device extends BaseEntity implements Serializable {
@@ -14,12 +14,28 @@ public class Device extends BaseEntity implements Serializable {
     private String name;
 
     @Column
+    private String status;
+
+    @Column
+    private String serialNumber;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date updateDate;
+
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date warrantyDate;
 
-    @OneToMany(mappedBy = "device")
-    private List<Repair> repairList;
-
     public Device() {
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getName() {
@@ -28,6 +44,30 @@ public class Device extends BaseEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getWarrantyDate() {
+        return warrantyDate;
+    }
+
+    public void setWarrantyDate(Date warrantyDate) {
+        this.warrantyDate = warrantyDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
 }
