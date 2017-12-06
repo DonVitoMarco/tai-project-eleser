@@ -1,8 +1,6 @@
 package pl.thewalkingcode.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -11,20 +9,7 @@ import java.util.UUID;
 public class BaseEntity implements Serializable {
 
     @Id
-    @org.hibernate.annotations.GenericGenerator(
-            name = "id_generator",
-            strategy = "enhanced-sequence",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(
-                            name = "sequence_name",
-                            value = "jpa_recruiter_seq"
-                    ),
-                    @org.hibernate.annotations.Parameter(
-                            name = "initial_value",
-                            value = "100"
-                    )
-            }
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -39,6 +24,10 @@ public class BaseEntity implements Serializable {
     public boolean equals(Object o) {
         return this == o || o instanceof BaseEntity &&
                 Objects.equals(uuid, ((BaseEntity) o).uuid);
+    }
+
+    public Long getId() {
+        return id;
     }
 
 }

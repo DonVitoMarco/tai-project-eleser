@@ -37,7 +37,7 @@
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{device.warrantyDate}">
-                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                                <f:convertDateTime pattern="dd.MM.yyyy"/>
                             </h:outputText>
                         </f:facet>
                         <f:facet name="input"><p:calendar id="popup" value="#{device.warrantyDate}"/></f:facet>
@@ -51,7 +51,9 @@
                     </p:cellEditor>
                 </p:column>
                 <p:column headerText="Update Date">
-                    <h:outputText value="#{device.updateDate}"/>
+                    <h:outputText value="#{device.updateDate}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    </h:outputText>
                 </p:column>
 
                 <p:column style="width:32px">
@@ -59,8 +61,17 @@
                 </p:column>
 
             </p:dataTable>
-        </h:form>
 
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Serial Number:" />
+                <p:inputText value="#{adminBean.newSerialNumber}"/>
+                <p:outputLabel value="Name:" />
+                <p:inputText value="#{adminBean.newName}"/>
+                <p:outputLabel value="Warranty Date:" />
+                <p:calendar value="#{adminBean.newWarrantyDate}"/>
+                <p:commandButton value="Add" update="form" process="@form" icon="ui-icon-check" actionListener="#{adminBean.addNewDevice}"/>
+            </p:panelGrid>
+        </h:form>
 
     </ui:define>
 </ui:composition>
