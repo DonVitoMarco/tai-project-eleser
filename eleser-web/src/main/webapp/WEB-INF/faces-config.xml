@@ -12,4 +12,19 @@
         </navigation-case>
     </navigation-rule>
 
+    <managed-bean>
+        <managed-bean-name>infoBean</managed-bean-name>
+        <managed-bean-class>pl.thewalkingcode.beans.InfoBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>appName</property-name>
+            <value>Electronic Service</value>
+        </managed-property>
+        <managed-property>
+            <property-name>appVersion</property-name>
+            <value>1.0-SNAPSHOT</value>
+        </managed-property>
+    </managed-bean>
+
+
 </faces-config>

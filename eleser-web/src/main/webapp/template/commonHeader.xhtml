@@ -9,10 +9,15 @@
 <body>
 
 <ui:component>
-    <h1>common header</h1>
-    <h:panelGroup rendered="#{not empty request.remoteUser}">
-        <p:button value="Logout" href="/logout?faces-redirect=true"/>
-    </h:panelGroup>
+    <p:toolbar>
+        <f:facet name="left">
+            <p:outputLabel value="#{homeBean.infoBean.appName} : "/>
+            <p:outputLabel value="#{homeBean.infoBean.appVersion}"/>
+        </f:facet>
+        <f:facet name="right">
+            <p:button rendered="#{not empty request.remoteUser}" value="Logout" href="/logout?faces-redirect=true"/>
+        </f:facet>
+    </p:toolbar>
 </ui:component>
 
 </body>
