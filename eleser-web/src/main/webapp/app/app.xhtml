@@ -9,7 +9,59 @@
 
 <ui:composition template="/template/commonLayout.xhtml">
     <ui:define name="content">
-        <h:outputLabel value="App1"/>
+        <p:outputLabel value="Witaj #{adminBean.userInfoBean.username}!" style="margin: 20px 10px"/>
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <p:dataTable id="devices" var="device" value="#{adminBean.deviceList}" editable="true"
+                         style="margin: 20px 10px">
+                <f:facet name="header">
+                    List Urządzeń
+                </f:facet>
+
+                <p:ajax event="rowEdit" listener="#{adminBean.onRowEdit}" update=":form:msgs"/>
+                <p:ajax event="rowEditCancel" listener="#{adminBean.onRowCancel}" update=":form:msgs"/>
+
+                <p:column headerText="Serial Number">
+                    <h:outputText value="#{device.serialNumber}"/>
+                </p:column>
+                <p:column headerText="Name">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{device.name}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{device.name}"
+                                                           style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Warranty Date">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{device.warrantyDate}">
+                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input"><p:calendar id="popup" value="#{device.warrantyDate}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Status">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{device.status}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{device.status}"
+                                                           style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Update Date">
+                    <h:outputText value="#{device.updateDate}"/>
+                </p:column>
+
+                <p:column style="width:32px">
+                    <p:rowEditor/>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+
+
     </ui:define>
 </ui:composition>
 

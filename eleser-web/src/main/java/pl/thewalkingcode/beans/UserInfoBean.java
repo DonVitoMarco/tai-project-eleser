@@ -8,20 +8,21 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.List;
 
 
 @ManagedBean
 @SessionScoped
-public class HelloBean implements Serializable {
+public class UserInfoBean implements Serializable {
 
     @Inject
     private UserService userService;
 
     private String username;
 
-    public HelloBean() {
+    public UserInfoBean() {
         Subject subject = SecurityUtils.getSubject();
-        System.out.println(subject.hasRole("admin"));
+        username = (String) subject.getPrincipal();
     }
 
     public UserService getUserService() {
@@ -39,4 +40,5 @@ public class HelloBean implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
