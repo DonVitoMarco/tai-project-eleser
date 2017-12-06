@@ -27,6 +27,20 @@ public class DeviceRepository  {
         return list;
     }
 
+    public Device findBySerialNumber(String serialNumber) {
+        List<Device> list = null;
+        Query query = entityManager.createQuery("SELECT d FROM Device d WHERE d.serialNumber = :sn").setParameter("sn", serialNumber);
+        try {
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+
     public Device merge(Device device) {
         return entityManager.merge(device);
     }

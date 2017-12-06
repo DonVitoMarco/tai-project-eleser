@@ -32,4 +32,8 @@ public class DeviceService {
         deviceRepository.delete(id);
     }
 
+    public Device findBySerialNumber(String serialNumber) {
+        return deviceRepository.findBySerialNumber(serialNumber);
+    }
+
 }

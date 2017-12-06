@@ -9,10 +9,26 @@
 
 <ui:composition template="/template/commonLayout.xhtml">
     <ui:define name="content">
-        <h:form>
+        <h:form id="search">
+            <p:growl id="msgs" showDetail="true"/>
+
             <p:fieldset legend="Dla klientów" style="margin: 60px 0">
+                <p:outputLabel value="Wyszukaj: "/>
+                <p:inputText value="#{homeBean.searchNumber}"/>
+                <p:commandButton value="Wyszukaj" update="search" process="@form" icon="ui-icon-check"
+                                 actionListener="#{homeBean.search}"/>
+
+                <p:panelGrid rendered="#{homeBean.searchDevice != null}" columns="2" style="width: 500px; margin: 20px 0">
+                    <p:outputLabel value="Serial Number: "/>
+                    <p:outputLabel value="#{homeBean.searchDevice.serialNumber}"/>
+                    <p:outputLabel value="Data aktualizacji: "/>
+                    <p:outputLabel value="#{homeBean.searchDevice.warrantyDate}"/>
+                    <p:outputLabel value="Status:"/>
+                    <p:outputLabel value="#{homeBean.searchDevice.status}"/>
+                </p:panelGrid>
 
             </p:fieldset>
+
             <p:fieldset legend="Dla pracowników" style="margin: 60px 0">
                 <h:commandLink action="#{homeBean.navigationBean.goToPage('app')}" value="Jestem pracownikiem"/>
             </p:fieldset>
