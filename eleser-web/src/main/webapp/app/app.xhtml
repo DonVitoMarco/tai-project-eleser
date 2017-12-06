@@ -9,6 +9,7 @@
 
 <ui:composition template="/template/commonLayout.xhtml">
     <ui:define name="content">
+        <br/>
         <p:outputLabel value="Witaj #{adminBean.userInfoBean.username}!" style="margin: 20px 10px"/>
 
         <h:form id="form">
@@ -55,26 +56,30 @@
                         <f:convertDateTime pattern="dd.MM.yyyy"/>
                     </h:outputText>
                 </p:column>
-
-                <p:column style="width:32px">
+                <p:column headerText="Edycja" style="text-align: center;">
                     <p:rowEditor/>
                 </p:column>
-
-                <p:column>
-                    <p:commandButton value="Delete" update="form" icon="ui-icon-close" actionListener="#{adminBean.deleteDevice(device)}"/>
+                <p:column headerText="Usuń" style="text-align: center;">
+                    <p:commandButton value="Delete" update="form" icon="ui-icon-close"
+                                     actionListener="#{adminBean.deleteDevice(device)}"/>
                 </p:column>
 
             </p:dataTable>
 
-            <p:panelGrid columns="2" layout="grid">
-                <p:outputLabel value="Serial Number:" />
+            <p:panelGrid columns="2" layout="grid" style="width: 500px; margin: 20px 10px;">
+                <f:facet name="header">
+                    <p:outputLabel value="Dodaj urządzenie"/>
+                </f:facet>
+                <p:outputLabel value="Serial Number:"/>
                 <p:inputText value="#{adminBean.newSerialNumber}"/>
-                <p:outputLabel value="Name:" />
+                <p:outputLabel value="Name:"/>
                 <p:inputText value="#{adminBean.newName}"/>
-                <p:outputLabel value="Warranty Date:" />
+                <p:outputLabel value="Warranty Date:"/>
                 <p:calendar value="#{adminBean.newWarrantyDate}"/>
-                <p:commandButton value="Add" update="form" process="@form" icon="ui-icon-check" actionListener="#{adminBean.addNewDevice}"/>
+                <p:commandButton value="Add" update="form" process="@form" icon="ui-icon-check"
+                                 actionListener="#{adminBean.addNewDevice}"/>
             </p:panelGrid>
+
         </h:form>
 
     </ui:define>
