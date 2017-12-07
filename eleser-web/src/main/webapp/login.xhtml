@@ -12,18 +12,18 @@
         <h:form id="login">
             <p:panelGrid columns="2" layout="grid" style="width: 500px; margin: 20px 10px; text-align: center;">
                 <f:facet name="header">
-                    <p:outputLabel value="Logowanie"/>
+                    <p:outputLabel value="#{msgs.log}"/>
                 </f:facet>
-                <h:outputLabel for="username" value="Username: "/>
+                <h:outputLabel for="username" value="#{msgs.username}:"/>
                 <h:inputText id="username" required="true"/>
 
-                <h:outputLabel for="password" value="Password: "/>
+                <h:outputLabel for="password" value="#{msgs.password}:"/>
                 <h:inputSecret id="password" required="true"/>
 
-                <h:outputLabel for="rememberMe" value="Remember Me: "/>
+                <h:outputLabel for="rememberMe" value="#{msgs.rememberMe}:"/>
                 <h:selectBooleanCheckbox id="rememberMe"/>
 
-                <h:commandButton value="Login"/>
+                <h:commandButton value="#{msgs.logIn}"/>
             </p:panelGrid>
         </h:form>
     </ui:define>

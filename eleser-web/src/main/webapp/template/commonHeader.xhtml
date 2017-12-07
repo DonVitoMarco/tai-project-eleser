@@ -15,7 +15,7 @@
             <p:outputLabel value="#{homeBean.infoBean.appVersion}"/>
         </f:facet>
         <f:facet name="right">
-            <p:button rendered="#{not empty request.remoteUser}" value="Logout" href="/logout?faces-redirect=true"/>
+            <p:button rendered="#{not empty request.remoteUser}" value="#{msgs.logout}" href="/logout?faces-redirect=true"/>
         </f:facet>
     </p:toolbar>
 </ui:component>

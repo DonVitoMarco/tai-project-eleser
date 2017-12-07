@@ -10,7 +10,7 @@
 <ui:composition template="/template/commonLayout.xhtml">
     <ui:define name="content">
         <br/>
-        <p:outputLabel value="Witaj #{adminBean.userInfoBean.username}!" style="margin: 20px 10px"/>
+        <p:outputLabel value="#{msgs.welcome} #{adminBean.userInfoBean.username}!" style="margin: 20px 10px"/>
 
         <h:form id="form">
             <p:growl id="msgs" showDetail="true"/>
@@ -18,23 +18,23 @@
             <p:dataTable id="devices" var="device" value="#{adminBean.deviceList}" editable="true"
                          style="margin: 20px 10px">
                 <f:facet name="header">
-                    List Urządzeń
+                    #{msgs.listDevices}
                 </f:facet>
 
                 <p:ajax event="rowEdit" listener="#{adminBean.onRowEdit}" update=":form:msgs"/>
                 <p:ajax event="rowEditCancel" listener="#{adminBean.onRowCancel}" update=":form:msgs"/>
 
-                <p:column headerText="Serial Number">
+                <p:column headerText="#{msgs.serialNumber}">
                     <h:outputText value="#{device.serialNumber}"/>
                 </p:column>
-                <p:column headerText="Name">
+                <p:column headerText="#{msgs.name}">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{device.name}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{device.name}"
                                                            style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column headerText="Warranty Date">
+                <p:column headerText="#{msgs.warrantyDate}">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{device.warrantyDate}">
@@ -44,23 +44,23 @@
                         <f:facet name="input"><p:calendar id="popup" value="#{device.warrantyDate}"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column headerText="Status">
+                <p:column headerText="#{msgs.status}">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{device.status}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{device.status}"
                                                            style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column headerText="Update Date">
+                <p:column headerText="#{msgs.updateDate}">
                     <h:outputText value="#{device.updateDate}">
                         <f:convertDateTime pattern="dd.MM.yyyy"/>
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Edycja" style="text-align: center;">
+                <p:column headerText="#{msgs.edit}" style="text-align: center;">
                     <p:rowEditor/>
                 </p:column>
-                <p:column headerText="Usuń" style="text-align: center;">
-                    <p:commandButton value="Delete" update="form" icon="ui-icon-close"
+                <p:column headerText="#{msgs.delete}" style="text-align: center;">
+                    <p:commandButton value="#{msgs.delete}" update="form" icon="ui-icon-close"
                                      actionListener="#{adminBean.deleteDevice(device)}"/>
                 </p:column>
 
@@ -68,15 +68,15 @@
 
             <p:panelGrid columns="2" layout="grid" style="width: 500px; margin: 20px 10px;">
                 <f:facet name="header">
-                    <p:outputLabel value="Dodaj urządzenie"/>
+                    <p:outputLabel value="#{msgs.addDevices}"/>
                 </f:facet>
-                <p:outputLabel value="Serial Number:"/>
+                <p:outputLabel value="#{msgs.serialNumber}:"/>
                 <p:inputText value="#{adminBean.newSerialNumber}"/>
-                <p:outputLabel value="Name:"/>
+                <p:outputLabel value="#{msgs.name}:"/>
                 <p:inputText value="#{adminBean.newName}"/>
-                <p:outputLabel value="Warranty Date:"/>
+                <p:outputLabel value="#{msgs.warrantyDate}:"/>
                 <p:calendar value="#{adminBean.newWarrantyDate}"/>
-                <p:commandButton value="Add" update="form" process="@form" icon="ui-icon-check"
+                <p:commandButton value="#{msgs.add}" update="form" process="@form" icon="ui-icon-check"
                                  actionListener="#{adminBean.addNewDevice}"/>
             </p:panelGrid>
 
